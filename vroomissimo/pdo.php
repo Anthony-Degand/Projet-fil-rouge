@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>
-Connexion à MySQL avec PDO 
+Interrogation de la table Vehicules avec PDO 
 </title>
 <link rel="stylesheet" href="vehicules.css" />
 <meta charset="utf-8">
