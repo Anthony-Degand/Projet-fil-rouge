@@ -1,9 +1,9 @@
 <?php
-$bdd = new PDO('mysql:host=localhost;dbname=vroomissimo;', 'Antho', 'azerty123'); // connection a la base de données
-$allcars = $bdd->query('SELECT * FROM marques ORDER BY id_marques DESC'); // récupérer tous les marques de la table marques par ordre decroissant
+$bdd = new PDO('mysql:host=localhost;dbname=vroomissimo;', 'root', ''); // connection a la base de données
+$allvehicules = $bdd->query('SELECT * FROM vehicules ORDER BY id_vehicules DESC'); // récupérer tous de la table vehicule par ordre décroissant
 if(isset($_GET['s']) AND !empty($_GET['s'])){ // si, l'utilisateur à lancer sa recherche dans l'input "s" et si elle n'est pas vide 
    $recherche = htmlspecialchars($_GET['s']); // empécher que l'utilisateur rentre du code html dans la recherche 
-   $allcars = $bdd->query('SELECT nom_marques FROM marques WHERE nom_marques LIKE "%'.$recherche.'%" ORDER BY  id_marques DESC'); // verifier si la recherche correspond à une partit du resultat et l'afficher par ordre décroissant
+   $allvehicules = $bdd->query('SELECT vehicules.prix_vente, vehicule.km, vehicule.date_mise_circulation,modeles.nom_modeles FROM vehicules INNER JOIN modeles ON vehicules.id_modeles=modeles.id_modeles WHERE concat (prix_vente,km,date_mise_circulation,nom_modeles) LIKE "%'.$recherche.'%"'); // verifier si la recherche correspond à une partit du resultat et l'afficher par ordre décroissant
 }
 ?>
 <!DOCTYPE html>
@@ -24,11 +24,18 @@ if(isset($_GET['s']) AND !empty($_GET['s'])){ // si, l'utilisateur à lancer sa 
 
         <?php 
 
-            if($allcars->rowCount() > 0){// compté le nombre de champs qui à était recupérer au niveau de la requette (s'il en récupere au moin un )
+            if($allvehicules->rowCount() > 0 ){// compté le nombre de champs qui à était recupérer au niveau de la requette (s'il en récupere au moin un )
 
-                while($car = $allcars->fetch()){ // (methode fetch = recupérer les données) 
+                while($vehicule = $allvehicules->fetch()){ // (methode fetch = recupérer les données) 
                     ?>
-                        "mon tableau ici"
+                        <table>
+                            <tr>
+                                <td><?php echo $vehicule['prix_vente']; ?></td>
+                                <td><?php echo $vehicule['km']; ?></td>
+                                <td><?php echo $vehicule['date_mise_circulation']; ?></td>
+                                <td><?php echo $vehicule['nom_modeles']; ?></td>
+                            </tr>
+                        </table>
                     <?php //fermer les balise php et les reouvrir pour poser une balise html
                 } 
 
