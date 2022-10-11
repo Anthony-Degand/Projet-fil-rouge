@@ -25,18 +25,20 @@ Rechercher des vehicules
 </form>
 
 <section class="affichage">
-
+  
   <?php
 
     if($allcars->rowCount() > 0){
       while($car = $allcars->fetch()){
         ?>
-        <p><?php echo $car ['nom_marques']; ?></p>
+        
+        <h2><?php echo $car ['nom_marques']; ?></h2>
+
         <?php
       }
     }else{
       ?>
-      <p>Aucun véhicule trouver</p>
+      <p class="rouge">Aucun véhicule trouver</p>
       <?php
     }
 
