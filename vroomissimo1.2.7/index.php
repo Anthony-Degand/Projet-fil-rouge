@@ -21,11 +21,11 @@ $vehicules = $requete->fetchAll(); // variable vehicules = récupèrer les donn�
 <h1>Contenue de la page d'accueil</h1>
 
 <section> <!--ouvrir une section pour le SEO (referencement) est une bonne pratique-->
-<?php foreach($vehicules as $vehicule): ?> <!-- boucle "pour chaque" qui parcourt les tableaux, ici dans la table vehicules pour chaques vehicule : -->
+<?php foreach($vehicules as $vehicule): ?> <!-- boucle "pour chaque" qui parcourt les tableaux, ici, dans la table "vehicules" pour chaques vehicule : -->
     <article>
-        <h1><?= strip_tags($vehicule['id_vehicules'])?></h1>        <!-- afficher les id_vehicules avec la methode "strip_tags()" pour prévenir les injections sql-->
-        <p><?= strip_tags($vehicule['prix_vente'])?></p>            <!-- afficher les prix_vente-->
-        <p>Statut : <?=strip_tags($vehicule['statut_voiture'])?></p><!-- afficher statut_voiture-->   
+    <h1><?= strip_tags($vehicule['km'])?></h1>                        <!-- afficher les kilometre () avec la methode "strip_tags()" pour prévenir les injections sql)-->
+        <p><?= strip_tags($vehicule['prix_vente'])?> €</p>            <!-- afficher les prix_vente-->
+        <p>Statut : <?=strip_tags($vehicule['statut_voiture'])?></p>  <!-- afficher statut_voiture-->   
     </article>
 <?php endforeach; ?>
 </section>
