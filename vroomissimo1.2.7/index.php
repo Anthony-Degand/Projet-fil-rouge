@@ -10,7 +10,7 @@ include('C:\laragon\www\projet_vroomissimo\vroomissimo1.2.7\includes.php\navbar.
 require_once('C:\laragon\www\projet_vroomissimo\vroomissimo1.2.7\includes.php\connection_bdd.php');
 
 // on écrit la requête
-$sql = "SELECT * FROM `vehicules` ORDER BY `id_vehicules` DESC";
+$sql = "SELECT * FROM `vehicules` NATURAL JOIN `marques` NATURAL JOIN `modeles` NATURAL JOIN `vendeurs` NATURAL JOIN `villes` ORDER BY `id_vehicules` DESC";
 // on exécute la requête
 $requete = $db->query($sql); // dans ma bbd exécute ma requete "sql"
 // on récupère les données
@@ -21,11 +21,25 @@ $vehicules = $requete->fetchAll(); // variable vehicules = récupèrer les donn�
 <h1>Contenue de la page d'accueil</h1>
 
 <section> <!--ouvrir une section pour le SEO (referencement) est une bonne pratique-->
-<?php foreach($vehicules as $vehicule): ?> <!-- boucle "pour chaque" qui parcourt les tableaux, ici, dans la table "vehicules" pour chaques vehicule : -->
+<?php foreach($vehicules as $vehicule): ?> <!-- boucle "pour chaque" qui parcourt les tableaux, pour chaques -> vehicule : -->
     <article>
-    <h1><?= strip_tags($vehicule['km'])?></h1>                        <!-- afficher les kilometre () avec la methode "strip_tags()" pour prévenir les injections sql)-->
-        <p><?= strip_tags($vehicule['prix_vente'])?> €</p>            <!-- afficher les prix_vente-->
-        <p>Statut : <?=strip_tags($vehicule['statut_voiture'])?></p>  <!-- afficher statut_voiture-->   
+        <table>
+            <tr>
+                <td>Marques</td>
+                <td>Modeles</td>
+                <td>Prix jusque(€)</td>
+                <td>1er immatriculation</td>
+                <td>Ville/(CP)</td>
+            </tr>
+
+            <tr>
+                <td><?php echo strip_tags($vehicule['nom_marques'])?></td>
+                <td><?php echo strip_tags($vehicule['nom_modeles'])?></td>
+                <td><?php echo strip_tags($vehicule['prix_vente'])?></td>
+                <td><?php echo strip_tags($vehicule['date_mise_circulation'])?></td>
+                <td><?php echo strip_tags($vehicule['code_postal'])?></td>
+            </tr>
+        </table>
     </article>
 <?php endforeach; ?>
 </section>

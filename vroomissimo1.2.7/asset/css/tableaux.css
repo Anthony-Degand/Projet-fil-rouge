@@ -1,0 +1,8 @@
+table td {
+    border-bottom: 2px solid whitesmoke;
+}
+
+table tr {
+    display: grid;
+    grid-template-columns: 10fr 10fr 10fr 20fr 10fr;
+}
