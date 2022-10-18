@@ -10,7 +10,8 @@ include('C:\laragon\www\projet_vroomissimo\vroomissimo1.2.7\includes.php\navbar.
 require_once('C:\laragon\www\projet_vroomissimo\vroomissimo1.2.7\includes.php\connection_bdd.php');
 
 // on écrit la requête
-$sql = "SELECT * FROM `vehicules` NATURAL JOIN `marques` NATURAL JOIN `modeles` NATURAL JOIN `vendeurs` NATURAL JOIN `villes` ORDER BY `id_vehicules` DESC";
+$sql = "SELECT * FROM `vehicules` NATURAL JOIN `marques` NATURAL JOIN `modeles` NATURAL JOIN `vendeurs` NATURAL JOIN `villes` NATURAL JOIN `departements`
+NATURAL JOIN `caracteristiques_techniques`NATURAL JOIN `consommation`NATURAL JOIN `couleur`NATURAL JOIN `options` ORDER BY `id_vehicules` DESC";
 // on exécute la requête
 $requete = $db->query($sql); // dans ma bbd exécute ma requete "sql"
 // on récupère les données
